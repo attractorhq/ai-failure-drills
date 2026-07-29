@@ -1,0 +1,5 @@
+include_mail = false
+exclude_path = [".git", "__pycache__"]
+exclude = [
+  '^https://github\.com/attractorhq/ai-failure-drills/security/advisories/new$'
+]

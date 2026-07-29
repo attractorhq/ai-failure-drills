@@ -1,0 +1,33 @@
+name: Propose a scenario
+description: Suggest a focused AI failure exercise
+title: "[Scenario]: "
+labels: [enhancement, triage]
+body:
+  - type: textarea
+    id: risk
+    attributes:
+      label: Risk and learning need
+      description: What decision or coordination problem should the drill expose?
+    validations:
+      required: true
+  - type: textarea
+    id: participants
+    attributes:
+      label: Useful participants
+      description: Which roles need to practise together?
+    validations:
+      required: true
+  - type: textarea
+    id: outline
+    attributes:
+      label: Scenario outline
+      description: Describe a fictional, provider-neutral starting state and escalation.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safe
+    attributes:
+      label: Sensitive information
+      options:
+        - label: This proposal contains no real credentials, personal data, or confidential incident details.
+          required: true

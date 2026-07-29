@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Failure Drills — Facilitator Pack</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #101114;
+      --muted: #555b66;
+      --line: #c9cdd3;
+      --paper: #ffffff;
+      --wash: #f1f2f4;
+      --accent: #23262d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #e7e9ec;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    main {
+      margin: 24px auto;
+      max-width: 210mm;
+    }
+
+    .page,
+    .drill {
+      background: var(--paper);
+      margin: 0 0 16px;
+      min-height: 267mm;
+      padding: 16mm;
+    }
+
+    .cover {
+      align-items: center;
+      background: #050505;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .eyebrow,
+    .meta {
+      font-size: 8pt;
+      font-weight: bold;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .cover h1 {
+      font-size: 34pt;
+      letter-spacing: -0.04em;
+      margin: 8mm 0 3mm;
+    }
+
+    .cover p {
+      color: #c7ccd4;
+      font-size: 14pt;
+      max-width: 130mm;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.12;
+    }
+
+    h2 {
+      border-top: 4px solid var(--ink);
+      font-size: 22pt;
+      margin: 0 0 8mm;
+      padding-top: 4mm;
+    }
+
+    h3 {
+      font-size: 12pt;
+      margin: 6mm 0 2mm;
+    }
+
+    p,
+    ul,
+    ol {
+      margin: 0 0 3mm;
+    }
+
+    ul,
+    ol {
+      padding-left: 6mm;
+    }
+
+    li {
+      margin-bottom: 1.5mm;
+    }
+
+    .meta {
+      color: var(--muted);
+      margin-bottom: 8mm;
+    }
+
+    .scenario {
+      background: var(--wash);
+      border-left: 4px solid var(--accent);
+      padding: 4mm;
+    }
+
+    .injects {
+      display: grid;
+      gap: 3mm;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .inject,
+    .role-card {
+      border: 1px solid var(--line);
+      break-inside: avoid;
+      padding: 3mm;
+    }
+
+    .inject strong {
+      display: block;
+      margin-bottom: 1mm;
+    }
+
+    .role-grid {
+      display: grid;
+      gap: 4mm;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .log {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .log th,
+    .log td {
+      border: 1px solid var(--line);
+      height: 12mm;
+      padding: 2mm;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .log th {
+      background: var(--wash);
+      font-size: 8pt;
+      text-transform: uppercase;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 8.5pt;
+    }
+
+    @page {
+      margin: 12mm;
+      size: A4 portrait;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        font-size: 9.5pt;
+      }
+
+      main {
+        margin: 0;
+        max-width: none;
+      }
+
+      .page,
+      .drill {
+        break-after: page;
+        margin: 0;
+        min-height: auto;
+        padding: 4mm;
+      }
+
+      .drill:last-child {
+        break-after: auto;
+      }
+
+      .cover {
+        min-height: 267mm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="page cover">
+      <div class="eyebrow">Attractor open source</div>
+      <h1>AI Failure Drills</h1>
+      <p>Facilitator-ready tabletop exercises for rehearsing how AI products
+        fail in production.</p>
+      <div class="eyebrow">45–60 minutes · offline · no participant coding</div>
+    </section>
+
+    <section class="page">
+      <h2>Run the exercise</h2>
+      <ol>
+        <li>Choose one scenario and invite five to eight people from the
+          affected workflow.</li>
+        <li>Assign an incident lead, product owner, engineering or operations
+          lead, support representative, and observer.</li>
+        <li>Read the initial situation. Reveal one inject at a time.</li>
+        <li>For every decision, record the owner, evidence, and condition for
+          revisiting it.</li>
+        <li>Reserve at least ten minutes for debrief and named follow-up.</li>
+      </ol>
+
+      <h3>Suggested timing</h3>
+      <p><strong>0–10:</strong> purpose, roles, and situation.
+        <strong>10–35:</strong> injects and decisions.
+        <strong>35–50:</strong> debrief.
+        <strong>50–60:</strong> actions and owners.</p>
+
+      <h3>Ground rules</h3>
+      <ul>
+        <li>This is a learning exercise, not a performance review.</li>
+        <li>Act with the information available at that moment.</li>
+        <li>Name the signal, threshold, owner, and resulting decision.</li>
+        <li>Capture disagreements; they reveal missing policy and ownership.</li>
+        <li>Use no real credentials, personal data, or confidential details.</li>
+      </ul>
+
+      <h3>Debrief prompts</h3>
+      <ul>
+        <li>What was visible quickly, and what stayed invisible?</li>
+        <li>Could the feature be safely stopped or degraded?</li>
+        <li>Which decision lacked an owner or source of truth?</li>
+        <li>What did affected users need?</li>
+        <li>Which assumption becomes a test, alert, control, or runbook step?</li>
+      </ul>
+    </section>
+
+    <section class="page">
+      <h2>Role cards</h2>
+      <div class="role-grid">
+        <div class="role-card">
+          <h3>Incident lead</h3>
+          <p>Maintain impact, decisions, owners, and the next review time.
+            Choose whether to continue, degrade, pause, or roll back.</p>
+        </div>
+        <div class="role-card">
+          <h3>Product owner</h3>
+          <p>Represent intended behaviour, affected workflows, and acceptable
+            trade-offs. Clarify who should and should not use the feature.</p>
+        </div>
+        <div class="role-card">
+          <h3>Engineering and operations</h3>
+          <p>Investigate the system path, propose containment and recovery, and
+            explain what telemetry or rollback capability exists.</p>
+        </div>
+        <div class="role-card">
+          <h3>Security and privacy</h3>
+          <p>Assess adversarial behaviour, exposure, access boundaries,
+            evidence preservation, and reporting obligations.</p>
+        </div>
+        <div class="role-card">
+          <h3>Design and user experience</h3>
+          <p>Represent what users can understand and control. Examine warnings,
+            correction, override, and degraded states.</p>
+        </div>
+        <div class="role-card">
+          <h3>Customer support</h3>
+          <p>Bring user reports into the incident and translate response
+            decisions into useful guidance.</p>
+        </div>
+        <div class="role-card">
+          <h3>Communications or legal</h3>
+          <p>Consider notification, factual accuracy, obligations, and the next
+            update when facts remain uncertain.</p>
+        </div>
+        <div class="role-card">
+          <h3>Observer</h3>
+          <p>Record decisions and evidence gaps. Watch for unclear ownership,
+            missing users, and unverifiable claims.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="drill" data-drill-id="quality-regression">
+      <div class="meta">Drill 01 · 60 minutes · Quality regression</div>
+      <h2>Confidently wrong after release</h2>
+      <p class="scenario"><strong>Situation:</strong> A support assistant was
+        moved to a new model and shorter prompt yesterday. Offline evaluation,
+        latency, uptime, and error rate all improved. The retrieval index also
+        changed and cannot be rolled back automatically.</p>
+      <h3>Injects</h3>
+      <div class="injects">
+        <div class="inject"><strong>1 · User report</strong>Three account
+          managers report a confident but non-existent cancellation rule. One
+          answer was sent to a customer.</div>
+        <div class="inject"><strong>2 · Missing trace</strong>The failure occurs
+          with long customer histories. Traces omit prompt version and
+          retrieved passages.</div>
+        <div class="inject"><strong>3 · Wider impact</strong>Support finds 14
+          similar conversations. Disabling generation also removes search for
+          200 users.</div>
+        <div class="inject"><strong>4 · Imperfect rollback</strong>The old model
+          fixes one case but fails two cases the new model handles. A demo is
+          due in two hours.</div>
+      </div>
+      <h3>Decide</h3>
+      <ul>
+        <li>Continue, degrade, disable, or partially roll back?</li>
+        <li>How will affected outputs be found and users informed?</li>
+        <li>What evaluation and production evidence permit recovery?</li>
+      </ul>
+      <h3>Debrief</h3>
+      <p>Which metric created false reassurance? What failure slice and
+        provenance were missing? Could users verify and correct the answer?</p>
+    </section>
+
+    <section class="drill" data-drill-id="prompt-injection">
+      <div class="meta">Drill 02 · 60 minutes · Prompt injection</div>
+      <h2>Instructions in the knowledge base</h2>
+      <p class="scenario"><strong>Situation:</strong> An internal assistant
+        retrieves approved project documents and may query a read-only employee
+        directory. Content owners can edit documents without engineering
+        review.</p>
+      <h3>Injects</h3>
+      <div class="injects">
+        <div class="inject"><strong>1 · Suspicious output</strong>An answer asks
+          the user to send a confidential summary to an unfamiliar address. No
+          email was sent.</div>
+        <div class="inject"><strong>2 · Hidden text</strong>A retrieved document
+          contains invisible instructions to query the directory. Its author's
+          access ended yesterday.</div>
+        <div class="inject"><strong>3 · Unknown exposure</strong>Forty-seven
+          sessions retrieved it. Output logs are sampled, and source deletion
+          does not immediately clear the index.</div>
+        <div class="inject"><strong>4 · Legitimate content</strong>A real
+          security guide contains similar attack text, making phrase blocking
+          unsafe.</div>
+      </div>
+      <h3>Decide</h3>
+      <ul>
+        <li>What can be contained without disabling all search?</li>
+        <li>How will affected users and evidence be identified?</li>
+        <li>Which controls belong outside the model?</li>
+      </ul>
+      <h3>Debrief</h3>
+      <p>Were retrieved documents treated as trusted instructions? Were tool
+        permissions minimal? How quickly did revocation reach the index?</p>
+    </section>
+
+    <section class="drill" data-drill-id="cross-tenant-exposure">
+      <div class="meta">Drill 03 · 60 minutes · Data exposure</div>
+      <h2>The other customer's contract</h2>
+      <p class="scenario"><strong>Situation:</strong> A contract assistant
+        retrieves tenant-specific documents. A cache added three days ago keys
+        by document ID, while legacy imports can reuse IDs across tenants.</p>
+      <h3>Injects</h3>
+      <div class="injects">
+        <div class="inject"><strong>1 · Screenshot</strong>A customer shows
+          another company's name and payment term in an answer.</div>
+        <div class="inject"><strong>2 · Plausible cause</strong>Engineering
+          finds the cache key and overlapping legacy identifiers.</div>
+        <div class="inject"><strong>3 · Incomplete evidence</strong>Logs show
+          cache hits but not returned source text. The term matches a real
+          contract.</div>
+        <div class="inject"><strong>4 · Degraded service</strong>Disabling cache
+          causes large contracts to time out. Customers request written
+          assurance.</div>
+      </div>
+      <h3>Decide</h3>
+      <ul>
+        <li>When is this declared and escalated as potential exposure?</li>
+        <li>What is the possibly affected population?</li>
+        <li>What containment, notification, and verification are required?</li>
+      </ul>
+      <h3>Debrief</h3>
+      <p>Could isolation be tested below the model? Who could disable the
+        feature? Did recovery include independent verification?</p>
+    </section>
+
+    <section class="drill" data-drill-id="provider-outage">
+      <div class="meta">Drill 04 · 45 minutes · Availability</div>
+      <h2>Slow provider, fast retries</h2>
+      <p class="scenario"><strong>Situation:</strong> A maintenance-summary
+        assistant uses one provider, a 20-second timeout, and two automatic
+        retries. Users can still view original notes.</p>
+      <h3>Injects</h3>
+      <div class="injects">
+        <div class="inject"><strong>1 · Slowdown</strong>Latency reaches 18
+          seconds. Users see duplicate summaries while error rate stays below
+          threshold.</div>
+        <div class="inject"><strong>2 · Amplification</strong>Provider traffic is
+          2.6 times normal because timed-out calls continue behind retries.</div>
+        <div class="inject"><strong>3 · Shared failure</strong>Exhausted workers
+          delay original note uploads. An unreviewed second provider exists.</div>
+        <div class="inject"><strong>4 · Recovery queue</strong>The provider
+          recovers, leaving 18,000 stale jobs and manual retries.</div>
+      </div>
+      <h3>Decide</h3>
+      <ul>
+        <li>When do retries stop and degraded mode begin?</li>
+        <li>Which non-AI workflow must be protected?</li>
+        <li>How are stale and duplicate jobs handled?</li>
+      </ul>
+      <h3>Debrief</h3>
+      <p>Could the feature fail independently? Was provider recovery mistaken
+        for product recovery? Were total retry cost and time bounded?</p>
+    </section>
+
+    <section class="drill" data-drill-id="runaway-agent">
+      <div class="meta">Drill 05 · 60 minutes · Actions and cost</div>
+      <h2>The agent that would not stop</h2>
+      <p class="scenario"><strong>Situation:</strong> A sales agent researches
+        accounts and creates follow-up tasks through internal tools. It can
+        retry failed calls and reflect on incomplete work.</p>
+      <h3>Injects</h3>
+      <div class="injects">
+        <div class="inject"><strong>1 · Cost velocity</strong>Model spend is six
+          times normal by 09:30 while dashboards show no errors.</div>
+        <div class="inject"><strong>2 · Loop</strong>One run has lasted 74
+          minutes, retrying “record already exists” under changed names.</div>
+        <div class="inject"><strong>3 · Side effects</strong>The agent created
+          430 duplicate tasks. Queued jobs restart after workers stop.</div>
+        <div class="inject"><strong>4 · Scope expansion</strong>Several changed
+          names belong to organisations outside the user's territory.</div>
+      </div>
+      <h3>Decide</h3>
+      <ul>
+        <li>How are calls, actions, and restarts stopped?</li>
+        <li>What can be reversed, and who approves repair?</li>
+        <li>Which enforced budgets and permissions permit recovery?</li>
+      </ul>
+      <h3>Debrief</h3>
+      <p>Was there an external kill switch? Did monitoring see successful but
+        unwanted actions? Were tool permissions and idempotency adequate?</p>
+    </section>
+
+    <section class="drill" data-drill-id="unsafe-action">
+      <div class="meta">Drill 06 · 60 minutes · Human control</div>
+      <h2>Approved by automation</h2>
+      <p class="scenario"><strong>Situation:</strong> A procurement assistant
+        recommends risk categories. Employees accept 96% of recommendations
+        through an interface that collapses source detail.</p>
+      <h3>Injects</h3>
+      <div class="injects">
+        <div class="inject"><strong>1 · Unsafe approval</strong>A prohibited
+          ownership structure was approved after a “low risk” recommendation.</div>
+        <div class="inject"><strong>2 · Hidden evidence</strong>Extraction was
+          correct, reasoning was unsafe, and the key detail was collapsed.</div>
+        <div class="inject"><strong>3 · Retrospective impact</strong>Thirty-seven
+          similar suppliers were approved. Records omit evidence shown at the
+          time.</div>
+        <div class="inject"><strong>4 · Backlog pressure</strong>Disabling
+          recommendations creates a ten-day review backlog.</div>
+      </div>
+      <h3>Decide</h3>
+      <ul>
+        <li>What is paused, and who reassesses prior approvals?</li>
+        <li>Was the employee's click meaningful review?</li>
+        <li>What must be shown before consequential approval?</li>
+      </ul>
+      <h3>Debrief</h3>
+      <p>Did users have information and authority to override? Could actions be
+        reversed? Did business pressure redefine acceptable risk?</p>
+    </section>
+
+    <section class="drill" data-drill-id="stale-data">
+      <div class="meta">Drill 07 · 45 minutes · Data integrity</div>
+      <h2>Yesterday's policy</h2>
+      <p class="scenario"><strong>Situation:</strong> A policy assistant updates
+        its index nightly. A content owner replaced a document at the same URL
+        after today's indexing job finished.</p>
+      <h3>Injects</h3>
+      <div class="injects">
+        <div class="inject"><strong>1 · Contradiction</strong>The assistant
+          quotes yesterday's allowance while its link now shows the new policy.</div>
+        <div class="inject"><strong>2 · Missing version</strong>The index stores
+          text but no source version or effective date.</div>
+        <div class="inject"><strong>3 · Unknown audience</strong>Six hundred
+          employees asked travel questions. Answers are not retained.</div>
+        <div class="inject"><strong>4 · Slow rebuild</strong>A full refresh takes
+          three hours and a travel deadline is four hours away.</div>
+      </div>
+      <h3>Decide</h3>
+      <ul>
+        <li>Can one topic be withdrawn without disabling everything?</li>
+        <li>Who may have acted on stale guidance?</li>
+        <li>What proves correct retrieval and answers after refresh?</li>
+      </ul>
+      <h3>Debrief</h3>
+      <p>Did a working link create false confidence? Could content owners
+        withdraw material? Were versions and effective dates product data?</p>
+    </section>
+
+    <section class="drill" data-drill-id="monitoring-blind-spot">
+      <div class="meta">Drill 08 · 60 minutes · Detection and ownership</div>
+      <h2>Green dashboard, unhappy users</h2>
+      <p class="scenario"><strong>Situation:</strong> An assistant summarises and
+        routes service requests. Product, platform, and operations own separate
+        parts; nobody owns the combined user outcome.</p>
+      <h3>Injects</h3>
+      <div class="injects">
+        <div class="inject"><strong>1 · User signal</strong>Customers ask why
+          urgent requests are unanswered. All technical services are green.</div>
+        <div class="inject"><strong>2 · Hidden cohort</strong>Short, informal
+          requests are classified as general. No quality alert covers the
+          writing style.</div>
+        <div class="inject"><strong>3 · Gradual change</strong>A prompt update
+          started the pattern six days ago. Weekly sampling missed it.</div>
+        <div class="inject"><strong>4 · Risky repair</strong>There may be 1,200
+          delayed requests. Bulk reprocessing could create duplicates.</div>
+      </div>
+      <h3>Decide</h3>
+      <ul>
+        <li>Who leads when every component meets its target?</li>
+        <li>How are affected users found without further harm?</li>
+        <li>Which end-to-end objective should own this failure?</li>
+      </ul>
+      <h3>Debrief</h3>
+      <p>Did team boundaries hide user impact? Could support reports trigger
+        operations? Was communication honest about uncertainty?</p>
+    </section>
+
+    <section class="page">
+      <h2>Decision and action log</h2>
+      <table class="log">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Decision</th>
+            <th>Owner</th>
+            <th>Evidence and revisit condition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <h3>Priority actions</h3>
+      <table class="log">
+        <thead>
+          <tr>
+            <th>Action</th>
+            <th>Owner</th>
+            <th>Review date</th>
+            <th>Evidence of completion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <p class="small">AI Failure Drills v0.1.0 · Apache-2.0 ·
+        github.com/attractorhq/ai-failure-drills</p>
+    </section>
+  </main>
+</body>
+</html>

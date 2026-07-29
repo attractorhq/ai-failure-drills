@@ -1,0 +1,25 @@
+name: Report a drill problem
+description: Report unclear, inconsistent, or broken material
+title: "[Problem]: "
+labels: [bug, triage]
+body:
+  - type: input
+    id: material
+    attributes:
+      label: Drill or material
+      description: Name the file, drill, release, or commit.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What was unclear or did not work during preparation or facilitation?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected improvement
+    validations:
+      required: true
